@@ -32,10 +32,16 @@ class Operation(object):
             right if not isinstance(right, Operation) else right.value
         )
 
+    def __int__(self) -> int:
+        return self.value
+
+    def __repr__(self) -> str:
+        return str(self.value)
+
 # Parser
 def parse(expression: str) -> List[Operation]:
     return "nothing yet"
 
 # Testing
 print(parse("2*(3^(2-5))"))
-print(Operation(5, 6, TT_TYPES["-"]).value)
+print(Operation(2, Operation(3, Operation(2, 5, TT_TYPES["-"]), TT_TYPES["^"]), TT_TYPES["*"]))
